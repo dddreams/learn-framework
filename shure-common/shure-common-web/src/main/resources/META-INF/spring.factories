@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.shure.common.web.config.WebAutoConfiguration,\
+  com.shure.common.web.async.AsyncExecutorConfig
+org.springframework.context.ApplicationListener=com.shure.common.web.log.LogMDCListener

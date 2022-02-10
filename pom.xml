@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.shure</groupId>
+    <artifactId>shure_framework_pom</artifactId>
+    <version>1.0</version>
+    <modules>
+        <module>shure-ability</module>
+        <module>shure-business</module>
+        <module>shure-common</module>
+        <module>shure-config</module>
+        <module>shure-data</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven-plugin.version>3.8.1</maven-plugin.version>
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sprong-boot.version>2.3.0.RELEASE</sprong-boot.version>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <mybatis.version>2.0.6</mybatis.version>
+        <mysql-driver.version>8.0.26</mysql-driver.version>
+        <ken-page.version>1.2.7</ken-page.version>
+        <servlet.version>2.3</servlet.version>
+        <basic.version>1.0</basic.version>
+    </properties>
+
+    <!--
+        springboot
+        springcloud-netflix
+        springcloud-alibaba
+    -->
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- springboot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${sprong-boot.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- springcloud-netflix -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- springcloud-alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <!-- mybaits-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- mybatis 注解依赖 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <!-- mysql 驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-driver.version}</version>
+            </dependency>
+
+            <!-- ken page 分页插件-->
+            <dependency>
+                <groupId>io.github.verygoodwlk</groupId>
+                <artifactId>ken-page-boot-starter</artifactId>
+                <version>${ken-page.version}</version>
+            </dependency>
+
+            <!-- servlet-api -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.version}</version>
+            </dependency>
+
+            <!-- 自己的依赖版本管理 -->
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-common-web</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-config</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-common-core</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-business-protocol</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-data-entity-demo</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-data-mapper-demo</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.shure</groupId>
+                <artifactId>shure-common-mysql</artifactId>
+                <version>${basic.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 创建占位符 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <my-profile>dev</my-profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <my-profile>test</my-profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <my-profile>prod</my-profile>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <!-- 配置环境占位符 -->
+        <resources>
+            <resource>
+                <!--  占位符生效 -->
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- maven 编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- spring boot 整合 maven 的插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${sprong-boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

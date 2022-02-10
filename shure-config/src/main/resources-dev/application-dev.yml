@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include:
+      - devdemo
+      - log
+      - db

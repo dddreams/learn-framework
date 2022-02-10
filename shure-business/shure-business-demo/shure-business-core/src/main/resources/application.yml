@@ -1,0 +1,23 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: shure-business-demo
+
+  profiles:
+    active: '@my-profile@'
+
+# 配置日志文件名称
+logging:
+  file:
+    name: demo
+
+# sql 执行时间插件开关，默认开启
+kenplugin:
+  sql:
+    enable: false
+
+# 异步线程池相关配置
+async:
+  executor:
+    thread-name-prefix: shure-executor-

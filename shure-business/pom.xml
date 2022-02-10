@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>shure_framework_pom</artifactId>
+        <groupId>com.shure</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>shure-business</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>shure-business-demo</module>
+    </modules>
+
+    <dependencies>
+
+        <!-- 排除 spring boot 自带的 logback 日志 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.shure</groupId>
+            <artifactId>shure-common-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.shure</groupId>
+            <artifactId>shure-config</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
