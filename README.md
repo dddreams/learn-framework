@@ -29,3 +29,9 @@
 - [ ] Nacos服务注册
 
 - [ ] Nacos的配置统一管理 
+  
+  
+
+### 配套视频
+
+[https://www.bilibili.com/video/BV1hQ4y1z78B?spm_id_from=333.999.0.0](https://gitee.com/link?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1hQ4y1z78B%3Fspm_id_from%3D333.999.0.0)
