@@ -7,6 +7,12 @@ spring:
   profiles:
     active: '@my-profile@'
 
+  #nacos 配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.102:8848
+
 # 配置日志文件名称
 logging:
   file:
