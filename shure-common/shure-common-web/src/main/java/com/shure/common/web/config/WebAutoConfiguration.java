@@ -4,6 +4,7 @@ import com.shure.common.web.async.AsyncExecutorConfig;
 import com.shure.common.web.async.AsyncExecutorConfiguration;
 import com.shure.common.web.excrption.GlobalException;
 import com.shure.common.web.utils.ApplicationContextUtils;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("com.shure.business")
+@EnableDiscoveryClient
 public class WebAutoConfiguration {
 
     /**

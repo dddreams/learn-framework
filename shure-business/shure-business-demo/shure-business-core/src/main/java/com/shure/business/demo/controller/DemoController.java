@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,10 +26,14 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RestController
+@RefreshScope
 public class DemoController {
 
     @Value("${com.name}")
     private String comName;
+
+    @Value("${com.names}")
+    private String comNames;
 
     @Autowired
     private StudentService studentService;
@@ -80,5 +85,11 @@ public class DemoController {
     public R find2() {
         log.info("日志，2.0版本");
         return RUtils.createSucc("2.0版本");
+    }
+
+    @GetMapping("/testConf")
+    public R testConfig() {
+        log.info("配置中心中读取配置：" + comNames);
+        return RUtils.createSucc(comNames);
     }
 }

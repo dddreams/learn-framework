@@ -45,7 +45,7 @@ public class PagePlugin implements Interceptor {
         // 1、获得当前执行的 sql 语句
         StatementHandler statementHandler = MyBatisUtils.getNoPorxyTarget(invocation.getTarget());
         BoundSql boundSql = statementHandler.getBoundSql();
-        String sql = boundSql.getSql().toLowerCase().trim();
+        String sql = boundSql.getSql().toLowerCase().trim().replaceAll("\\s+", " ");
 
         // 判断 sql 语句是否分页
         if (!sql.startsWith("select")) {
@@ -104,8 +104,8 @@ public class PagePlugin implements Interceptor {
         }
 
         // 构造 select count(*)
-        int from = sql.indexOf("from");
-        String totalSql = "select count(*) as total " + sql.substring(from);
+        int fromIndex = MyBatisUtils.getFromIndex(0, sql);
+        String totalSql = "select count(*) as total " + sql.substring(fromIndex);
         log.debug("[Page] - count sql - [{}]", totalSql);
 
         // 执行sql
